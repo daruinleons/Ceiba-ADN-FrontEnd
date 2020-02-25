@@ -6,9 +6,19 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-date-picker": "^7.10.0",
+    "react-datetime-picker": "^2.9.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-icons": "^3.9.0",
+    "react-number-format": "^4.4.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "sweetalert2-react": "^0.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
