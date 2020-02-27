@@ -5,6 +5,7 @@ import washingMachineService from './../services/washing-machine-service'
 import orderService from './../services/order-service'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
+import { Helmet } from 'react-helmet'
 
 class OrderForm extends React.Component {
 
@@ -79,12 +80,10 @@ class OrderForm extends React.Component {
     if (this.state.orderId === null) {
       orderService.createOrder(this.state.order).then(data => {
         this.validateResponse(data);
-        this.props.history.push("/order")
       })
     } else {
       orderService.updateOrder(this.state.order).then(data => {
         this.validateResponse(data);
-        this.props.history.push("/order")
       })
     }
   }
@@ -95,10 +94,16 @@ class OrderForm extends React.Component {
     } else {
       swal("Guardado", "La orden se guardó correctamente", "success");
     }
+      this.props.history.push("/order")
   }
 
   render() {
-    return (<div className="container">
+    return (
+      <div>
+        <Helmet>
+           <title>Formulario orden</title>
+         </Helmet>
+      <div className="container">
       <div className="card-header my-5">
         Formulario Orden
       </div>
@@ -111,18 +116,10 @@ class OrderForm extends React.Component {
               </label>
               <div className="col-sm-7 col-md-6">
                 <select className="form-control" id="hours" name="hours" onChange={this.handleChange} value={this.state.order.hours}>
-                  <option>
-                    6
-                  </option>
-                  <option>
-                    12
-                  </option>
-                  <option>
-                    24
-                  </option>
-                  <option>
-                    48
-                  </option>
+                  <option>6</option>
+                  <option>12</option>
+                  <option>24</option>
+                  <option>48</option>
                 </select>
               </div>
             </div>
@@ -135,8 +132,7 @@ class OrderForm extends React.Component {
                   {
                     this.state.clients.map((client) => {
                       return (<option value={client.id}>
-                        {client.name}
-                        {client.lastName}
+                        {client.name + ' ' + client.lastName}
                       </option>)
                     })
                   }
@@ -173,7 +169,7 @@ class OrderForm extends React.Component {
             </div>
             <div className="form-group row">
               <div className="col-sm-6">
-                <button className="btn btn-primary mr-4" onClick={this.saveOrder}>
+                <button className="btn btn-primary mr-4" onClick={this.saveOrder} id="saveButton">
                   Guardar
                 </button>
                 <Link to="/order" className="btn btn-primary">Cancelar</Link>
@@ -182,7 +178,9 @@ class OrderForm extends React.Component {
           </form>
         </div>
       </div>
-    </div>)
+    </div>
+    </div>
+  )
   }
 }
 export default OrderForm;

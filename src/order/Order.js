@@ -5,6 +5,7 @@ import NumberFormat from 'react-number-format'
 import {FaEdit, FaWindowClose} from 'react-icons/fa';
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
+import { Helmet } from 'react-helmet'
 
 class Order extends React.Component {
 
@@ -29,6 +30,9 @@ class Order extends React.Component {
 
   render() {
     return (<div>
+        <Helmet>
+           <title>Listado Ordenes</title>
+         </Helmet>
       <div className='container'>
         <div className="card border-primary mb-3 my-3">
           <div className="card-header">
@@ -48,7 +52,7 @@ class Order extends React.Component {
                     <th>Lavadora</th>
                     <th>Capacidad</th>
                     <th>Fecha de Orden</th>
-                    <th>Fecha de Entrega</th>
+                    <th>Fecha de Recolección</th>
                     <th>Precio</th>
                     <th>Acciones</th>
                   </tr>
@@ -67,7 +71,7 @@ class Order extends React.Component {
                         <td>
                           <Link to={"/form-order/" + order.id} className="btn btn-success mt-1"><FaEdit/></Link>
                           &nbsp;
-                          <a className="btn btn-danger mt-1" onClick={() => this.deleteOrder(order.id)}><FaWindowClose/>
+                          <a className="btn btn-danger mt-1 delete-button" onClick={() => this.deleteOrder(order.id)}><FaWindowClose/>
                           </a>
                         </td>
                       </tr>)
